@@ -2,7 +2,7 @@ name: prefix-path-tests
 on: [push]
 jobs:
   verify-prefix-path:
-    runs-on: ubuntu-latest
+    runs-on: Ubuntu-20.04
     strategy:
       max-parallel: 3
       fail-fast: false

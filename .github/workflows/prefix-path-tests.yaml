@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7]
-        tensorflow-version: [2.2.1, 2.3.1, "2.4.0rc3"]
+        python-version: [3.6, 3.7]
+        tensorflow-version: [2.1.2, 2.2.1, 2.3.1, "2.4.0rc3"]
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -14,4 +14,4 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install Tensorflow
-      run: pip install ${{ matrix.tensorflow-version }}
+      run: pip install tensorflow==${{ matrix.tensorflow-version }}

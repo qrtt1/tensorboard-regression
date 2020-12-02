@@ -29,7 +29,7 @@ function checkResult(wrongUrls) {
   });
 
   await page.goto(baseUrl);
-  await page.waitForNavigation({ waitUntil: 'load' }),
+  await page.waitForNavigation({ waitUntil: 'networkidle0' }),
   await browser.close();
 })().then(() => {
   checkResult(wrongUrls);

@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.6, 3.7]
         tensorflow-version: [2.1.2, 2.2.1, 2.3.1, "2.4.0rc3"]
     steps:
     - uses: actions/checkout@v2

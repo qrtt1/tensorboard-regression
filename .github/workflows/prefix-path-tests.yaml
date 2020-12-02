@@ -1,0 +1,17 @@
+name: prefix-path-tests
+on: [push]
+jobs:
+  verify-prefix-path:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+        tensorflow-version: [2.1.2, 2.2.1, 2.3.1, "2.4.0rc3"]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install Tensorflow
+      run: pip install ${{ matrix.tensorflow-version }}

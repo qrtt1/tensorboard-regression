@@ -1,7 +1,7 @@
 name: prefix-path-tests
 on: [push]
 jobs:
-  verify-prefix-path-py37:
+  verify-prefix-path:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -15,3 +15,6 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Tensorflow
       run: pip install tensorflow==${{ matrix.tensorflow-version }}
+    - name: Check tensorboard
+      run: sh check-tensorboard.sh
+    

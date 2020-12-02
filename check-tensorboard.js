@@ -19,7 +19,6 @@ function checkResult(wrongUrls) {
   await page.setDefaultNavigationTimeout(10 * 1000);
   await page.setRequestInterception(true);
   page.on('request', request => {
-    console.log(request.url());
     if (!request.url().startsWith(baseUrl)) {
       console.log("URL without prefix: " + request.url());
       if (!request.url().includes('/font-roboto/')) {

@@ -1,6 +1,26 @@
 name: prefix-path-tests
 on: [push]
 jobs:
+  tb-prefix-path:
+    runs-on: Ubuntu-20.04
+    strategy:
+      max-parallel: 3
+      fail-fast: false
+      matrix:
+        tensorboard-version: [2.0.0, 2.0.1, 2.0.2, 2.1.0, 2.1.1, 2.2.0, 2.2.1, 2.2.2, 2.3.0, 2.4.0]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.6
+    - name: Install tensorboard
+      run: pip install tensorboard==${{ matrix.tensorboard-version }}
+    - name: Install Puppeteer
+      run: npm i
+    - name: Check tensorboard
+      run: bash check-tensorboard.sh
+      timeout-minutes: 2
   verify-prefix-path:
     runs-on: Ubuntu-20.04
     strategy:
@@ -22,4 +42,3 @@ jobs:
     - name: Check tensorboard
       run: bash check-tensorboard.sh
       timeout-minutes: 2
-    

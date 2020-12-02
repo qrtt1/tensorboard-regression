@@ -1,10 +1,18 @@
+PORT=5566
+
 tensorboard --logdir tf-logs \
---port 5001 --bind_all \
+--port $PORT --bind_all \
 --path_prefix /foo/bar &
 
-echo "Tensorboard Started"
+echo "Tensorboard Starting"
 
-STATUS_CODE=$(curl -sL -w "%{http_code}" -I "http://127.0.0.1/foo/bar/" -o /dev/null)
+until printf "." && nc -z -w 2 127.0.0.1 $PORT; do
+    sleep 1;
+done;
+
+echo 'Tensorboard Started ✓'
+
+STATUS_CODE=$(curl -sL -w "%{http_code}" -I "http://127.0.0.1:$PORT/foo/bar/" -o /dev/null)
 
 echo "STATUS_CODE is $STATUS_CODE"
 

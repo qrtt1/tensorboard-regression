@@ -16,5 +16,5 @@ jobs:
     - name: Install Tensorflow
       run: pip install tensorflow==${{ matrix.tensorflow-version }}
     - name: Check tensorboard
-      run: sh check-tensorboard.sh
+      run: bash check-tensorboard.sh
     

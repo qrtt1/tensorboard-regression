@@ -1,13 +1,13 @@
-name: prefix-path-tests
+name: tensorboard-tests
 on: [push]
 jobs:
-  tb-prefix-path:
+  tensorboard:
     runs-on: Ubuntu-20.04
     strategy:
       max-parallel: 3
       fail-fast: false
       matrix:
-        tensorboard-version: [2.0.0, 2.0.1, 2.0.2, 2.1.0, 2.1.1, 2.2.0, 2.2.1, 2.2.2, 2.3.0, 2.4.0]
+        tensorboard-version: [2.0.0, 2.0.1, 2.0.2, 2.1.0, 2.1.1, 2.2.0, 2.2.1, 2.2.2, 2.3.0, 2.4.0, 2.4.1]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
@@ -21,14 +21,14 @@ jobs:
     - name: Check tensorboard
       run: bash check-tensorboard.sh
       timeout-minutes: 2
-  verify-prefix-path:
+  tensorflow:
     runs-on: Ubuntu-20.04
     strategy:
       max-parallel: 3
       fail-fast: false
       matrix:
-        python-version: [3.6, 3.7]
-        tensorflow-version: [2.2.1, 2.3.0rc0, 2.3.0rc1, 2.3.0rc2, 2.3.0, 2.3.1, 2.4.0rc3]
+        python-version: [3.6]
+        tensorflow-version: [2.2.1, 2.3.0rc0, 2.3.0rc1, 2.3.0rc2, 2.3.0, 2.3.1, 2.4.0, 2.4.0rc3, 2.4.0rc4]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
